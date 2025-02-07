@@ -1,5 +1,7 @@
 # Autovacuum Failures and it's Resolution
 
+* Note: Including end to end testing , scripts checked into the Repo and monitoring queries also demonstrated below. I'd also recommend to check OS level utilizations like Memory and CPU while I work through causation and resolution for autovacuum, additional to the below steps. Out of the monitoring tools I have used in past , I chose pgadmin to Query the database status for this instance. However, pganalyze, PRTG , grafana and prometheus can give me an historic insight for the table dba_sanchit.test2 in terms of it's DML activities, Resource utilizations. 
+
 # Create the necessary Schema
 ```
 postgres@b702cd26cd8b:/$ psql 
@@ -24,7 +26,10 @@ CREATE SCHEMA
 ```
 
 -- Loading initial data into this postgres DB
-sanchitshah@Sanchits-MacBook-Pro autovacuum % python3 load-data.py
+sanchitshah@Sanchits-MacBook-Pro autovacuum % python3 load-data.py 
+Table: test2, Dead Tuples: 0, Last Autovacuum: 2025-02-07 00:38:14.318330+00:00
+Table: test2, Dead Tuples: 0, Last Autovacuum: 2025-02-07 00:38:14.318330+00:00
+
 
 -- View of the Database
 postgres=# select pid,wait_event, wait_event_type,now() - query_start, query from pg_stat_activity where state='active';
