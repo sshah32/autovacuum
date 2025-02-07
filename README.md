@@ -277,3 +277,7 @@ autoanalyze_count   | 11
 
 ```
 
+# Simultaneously, connected pgdmin to the local Postgres Database server for monitoring Queries 
+![Screenshot 2025-02-06 at 5 06 39 PM](https://github.com/user-attachments/assets/1474bd8d-130a-4894-af74-8053e4e3dbed)
+
+
