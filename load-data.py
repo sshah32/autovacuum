@@ -17,6 +17,7 @@ def setup_database():
     cur = conn.cursor()
     
     cur.execute("""
+    CREATE SCHEMA IF NOT EXISTS dba_sanchit;
     CREATE TABLE IF NOT EXISTS dba_sanchit.test2 (
         id SERIAL PRIMARY KEY,
         name varchar(255),
