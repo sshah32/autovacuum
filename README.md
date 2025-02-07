@@ -2,24 +2,8 @@
 
 * Note: Including end to end testing , scripts checked into the Repo and monitoring queries also demonstrated below. I'd also recommend to check OS level utilizations like Memory and CPU while I work through causation and resolution for autovacuum, additional to the below steps. Out of the monitoring tools I have used in past , I chose pgadmin to Query the database status for this instance. However, pganalyze, PRTG , grafana and prometheus can give me an historic insight for the table dba_sanchit.test2 in terms of it's DML activities, Resource utilizations. 
 
-# Create the necessary Schema
-```
-postgres@b702cd26cd8b:/$ psql 
-psql (17.2 (Debian 17.2-1.pgdg120+1))
-Type "help" for help.
 
-postgres=# \dn
-      List of schemas
-  Name  |       Owner       
---------+-------------------
- public | pg_database_owner
-(1 row)
-
-postgres=# create schema dba_sanchit; 
-CREATE SCHEMA
-```
-
-# Calling the script load-data.py to load mock data into the table, and Stress the Autovacuum Process.
+# Calling the script load-data.py to provision Schema, table and load mock data into the table, and Stress the Autovacuum Process.
        -- Add Updates/Deletes to overwhelm the autovacuum. Autovacuum gets triggered due to the necessity of cleaning up the Bloat/dead tuples based on the autovacuum_analyze_scale_factor or autovacuum_vacuum_scale_factor.
        -- I monitored that looking into the dead tuples and other stats into the pg_stat_user_tables.
            Output from pg_stat_activity table:
